@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<h1>
+		{% if editMode %}
+			Update Employer
+		{% else %}
+			Create Employer
+		{% endif %}
+	</h1>
+
+	{{ form_start(formEmployes) }}
+	{{ form_row(formEmployes.firstname) }}
+	{{ form_row(formEmployes.lastname) }}
+	{{ form_row(formEmployes.phonenumber) }}
+	{{ form_row(formEmployes.email) }}
+	{{ form_row(formEmployes.address) }}
+	{{ form_row(formEmployes.function) }}
+	{{ form_row(formEmployes.salary) }}
+	{{ form_row(formEmployes.dateofbirth) }}
+	
+	<button type="submit" class="btn btn-primary mt-2">Valider</button>
+	{{ form_end(formEmployes) }}
+
+{% endblock %}

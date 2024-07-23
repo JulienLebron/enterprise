@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+	<div class="text-center my-5">
+		<h1 class="mt-5">Manage Employers</h1>
+		<div class="alert alert-info">⚙️ Table of employers</div>
+
+		{% for message in app.flashes('success') %}
+			<div class="col-md-5 mx-auto alert alert-success text-center">
+				{{ message }}
+			</div>
+		{% endfor %}
+	</div>
+
+	<table class="table table-bordered table-striped table-hover text-center">
+		<thead class="table-dark">
+			<tr>
+				{% for column in columns %}
+					{% if column != 'id' %}
+						<th>{{ column }}</th>
+					{% endif %}
+				{% endfor %}
+				<th>⚙️</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for employe in employes %}
+				<tr>
+					<td>{{ employe.firstname }}</td>
+					<td>{{ employe.lastname }}</td>
+					<td>{{ employe.phonenumber }}</td>
+					<td>{{ employe.email }}</td>
+					<td>{{ employe.address }}</td>
+					<td>{{ employe.function }}</td>
+					<td>{{ employe.salary }}</td>
+					<td>{{ employe.dateofbirth | date('d/m/Y') }}</td>
+					<td>
+						<a href="{{ path('update_employes', {"id": employe.id }) }}" class="btn btn-warning my-1">
+							<i class="fa-solid fa-pen-to-square white"></i>
+						</a>
+						<a href="{{ path('delete_employes', {"id": employe.id }) }}" class="btn btn-danger">
+							<i class="fa-solid fa-trash-can white"></i>
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<div class="text-center">
+		<a href="{{ path('create_employes') }}" class="btn btn-primary my-5">Create employer</a>
+	</div>
+{% endblock %}
